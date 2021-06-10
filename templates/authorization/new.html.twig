@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Leave
+{% endblock %}
+
+{% block body %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+
+            <h1 class="h3 mb-2 text-gray-800">Créer une demande d'autorisation</h1>
+
+        </div>
+        <div class="card-body">
+
+            <div class="col-md-6 offset-md-2">
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div class="row">
+                <a href="{{ path('authorization_index')}}" class="btn btn-default">Retour</a>
+
+
+                <button class=" fa fa-trash-o btn btn-success col-md-3 offset-md-7">{{ button_label|default('Ajouter') }}</button>
+
+</div>
+                {{ form_end(form) }}
+
+
+            </div>
+
+        </div>
+    </div>
+</div>{% endblock %}

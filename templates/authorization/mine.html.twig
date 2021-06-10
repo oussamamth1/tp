@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} authorisation index{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-2 text-gray-800">Liste des demandes d'authorisation </h1>
+    <div class="card shadow mb-4">
+
+        <div class="card-header py-2">
+
+            <h6 class="m-0 font-weight-bold text-primary"><a href="{{ path('authorization_new') }}"
+class="fa fa-trash-o btn btn-success col-md-2"><i
+
+                            class="fa fa-plus"></i> Ajouter</a></h6>
+        </div>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="table-data" width="100%" cellspacing="0">
+
+                        <thead>
+                        <tr>
+
+                            <th>email</th>
+                            <th>Date</th>
+                            <th>Heure debut</th>
+                            <th>Heure fin</th>
+                            <th>Statut</th>
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for authorization in authorizations %}
+                            <tr class="item-block">
+
+                                <td>{{ authorization.userId.email }}</td>
+                                <td>{{ authorization.date ? authorization.date|date('Y:m:d') : '' }}</td>
+                                <td>{{ authorization.startH ? authorization.startH|date('H:i:s') : '' }}</td>
+                                <td>{{ authorization.endH ? authorization.endH|date('H:i:s') : '' }}</td>
+
+                                <td>
+                                    {% if authorization.status == 'waiting' %}
+                                        <span class="badge badge-warning">
+                                           <i class="fa fa-hourglass-half"></i> En attente</span>
+                                    {% elseif authorization.status == 'accepted' %}
+                                        <span class="badge badge-success"> <i class="fa fa-check"></i> Accepté</span>
+                                    {% elseif authorization.status == 'rejected' %}
+                                        <span class="badge badge-danger"> <i
+                                                    class="fa fa-minus-circle"></i> Rejeté</span>
+                                    {% else %}
+                                        unknown
+
+                                    {% endif %}
+                                </td>
+                                <td>
+
+
+                                    <a href="{{ path('authorization_show', {'id': authorization.id}) }}"> <i
+                                                class="fa fa-eye  text-info"></i></a>
+                                    {% if authorization.status == 'waiting' %}
+                                    &nbsp; <a href="{{ path('authorization_edit', {'id': authorization.id}) }}"> <i
+                                                class=" fa fa-edit text-success"></i>
+                                    </a>
+                                    {{ include('authorization/_delete_form.html.twig') }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="7">Aucun enregistrement trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if (alert == 'success_add') %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                swal("Succès!", "Opération réalisée avec succès!", "success");
+            });
+        </script>
+    {% endif %}
+
+
+{% endblock %}

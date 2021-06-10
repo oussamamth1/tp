@@ -1,0 +1,8 @@
+framework:
+  router:
+    strict_requirements: ~
+    utf8: true
+# select_lang:
+#     pattern:  /select_lang/{langue}
+#     defaults: { App\Controller\SelectLang:selectLang }
+

@@ -1,0 +1,10 @@
+index:
+    path: /
+    controller: FOS\UserBundle\Controller\SecurityController::loginAction
+    # requirements:
+    #   _locale: en|fr
+fos_user:
+  resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+logout:
+    path: /
+  

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User
+{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-2 text-gray-800">modifier compte utilisateur</h1>
+
+
+    {{ form_start(formUser) }}
+
+    {{ form_widget(formUser) }}
+
+    <div>
+        <a href="{{ path('user_index') }}" class="btn btn-default">Retour</a>
+
+
+        <input class="fa fa-trash-o btn btn-success col-md-2 offset-md-7" id="ajout" type="submit" value="Mettre à jour">
+
+
+    </div>
+    {{ form_end(formUser) }}
+
+{% endblock %}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    {% block stylesheets %}
+        <!-- Custom fonts for this template -->
+        <link href="{{ asset('theme/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+              rel="stylesheet">
+        <!-- Custom styles for this template -->
+
+        <link href="{{ asset('theme/css/sb-admin-2.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('theme/css/custom.css') }}" rel="stylesheet">
+
+        <link href="{{ asset('theme/css/jquery.countdown.css') }}" rel="stylesheet">
+        <!-- Custom styles for this page -->
+        <link href="{{ asset('theme/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href=" {{ asset('theme/css1/animate.css') }}">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('theme/css1/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('theme/css1/line-awesome.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('theme/css1/line-awesome-font-awesome.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{  asset('theme/css1/line-awesome-font-awesome.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('theme/css1/jquery.mCustomScrollbar.min.css') }}">
+        <link rel="stylesheet" type="text/css" href=" {{ asset('theme/lib/slick/slick.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('theme/lib/slick/slick-theme.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('theme/css1/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('theme/css1/responsive.css') }}">
+    {% endblock %}
+
+</head>
+<body id="page-top">
+
+{% block javascripts %}
+    <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+
+    <!-- Bootstrap core JavaScript-->
+
+    <script src="{{ asset('theme/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('theme/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('theme/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('theme/js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('theme/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('theme/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('theme/js/bootbox.min.js') }}"></script>
+    <script src="{{ asset('theme/js/remove.js') }}"></script>
+    <script src="{{ asset('theme/js/refresh.js') }}"></script>
+    {#<script src="{{ asset('theme/js/chart.js') }}"></script>#}
+
+    <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/French.json"></script>
+
+    {#<script src="jquery-3.3.1.min.js"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="{{ asset('theme/js/jquery.countdown.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('theme/js1/jquery.min.js') }}"></script>
+    <script type="text/javascript" src=" {{ asset('theme/js1/popper.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/js1/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src=" {{ asset('theme/js1/jquery.mCustomScrollbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/lib1/slick/slick.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/js1/scrollbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('theme/js1/script.js') }}"></script>
+
+    <script>
+        $(function () {
+
+            var url = window.location.pathname,
+                urlRegExp = new RegExp(url.replace(/\/$/, '') + "$"); // create regexp to match current url pathname and remove trailing slash if present as it could collide with the link in navigation in case trailing slash wasn't present there
+            // now grab every link from the navigation
+            $('.collapse-inner a').each(function () {
+                // and test its normalized href against the url pathname regexp
+                if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+                    //   $(this).append('<i class="fa fa-check pad-lft-5"></i>');
+                    $(this).addClass('link-active');
+                    $(this).parent('div').parent('div').addClass('show');
+                }
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table-data').dataTable({
+                language: {
+                    "url": "{{ asset('datatable.fr.lang.json') }}"
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).on('submit', "form", function (e) {
+            $(this).find("button[type='submit']").prop('disabled',true);
+            $(this).find("button").prop('disabled',true);
+        });
+    </script>
+
+{% endblock %}
+
+<!-- Page Wrapper -->
+
+<div id="wrapper">
+    {{ include('includes/nav.html.twig') }}
+</div>
+<div>
+    {% block body %}{% endblock %}
+</div>
+    <!-- Content Wrapper -->
+  {#  <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            {{ render(controller('App\\Controller\\DefaultController::navBar')) }}
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            {% for message in app.flashes('error') %}
+                <div class="alt-danger flash-error">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>#}
+   {# {{ include('includes/nav.html.twig') }}#}
+
+
+
+
+
+</body>
+</html>

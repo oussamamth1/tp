@@ -1,0 +1,53 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %} 
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+{% endblock %}
+{% block body %}
+
+    <style>
+    label{
+    color: #ffff;
+    }
+    </style>
+
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-3">Nouveau compte</h1>
+    </div>
+    {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+    <div class="card-body">
+            <div class="col-md-12">
+
+                {{ form_start(formUser) }}
+                {{ form_row(formUser.email,{ 'label' :"Adresse email:",'attr':{'placeholder':"Inserer votre email"}}) }}
+
+
+                {{ form_row(formUser.Password,{'label' :"Mot de passe:",'attr':{'placeholder':"ajouter votre mot de passe "}}) }}
+                <em class="small text-gray-500">A minimum 8 characters password contains a combination of
+                    <strong>uppercase and lowercase letter</strong>
+                    and
+                    <strong>number</strong>.</em>
+                {{ form_row(formUser.startDate) }}
+
+               <span style="display:none;"> {{ form_row(formUser.enabled,{'label' :"Active",'attr':{'placeholder':" "}, "checked":'true'}) }} </span>
+
+                <input class="btn btn-primary btn-user btn-block" id="ajout" type="submit" value="Ajouter"/>
+
+                {{ form_end(formUser) }}
+            </div>
+
+        </div>
+
+    <div class="text-center">
+       <a href="{{ path('fos_user_security_login')}}">Se connecter ! </a>
+
+
+ 
+
+{% endblock %}
+

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Authorization{% endblock %}
+
+{% block body %}
+    <h2 class="h3 mb-2 text-gray-800">Autorisation</h2>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>email</th>
+            <td>{{ authorization.userId.email}}</td>
+        </tr>
+        <tr>
+                <th>Id</th>
+                <td>{{ authorization.id }}</td>
+            </tr>
+
+            <tr>
+                <th>Heure début</th>
+                <td>{{ authorization.startH ? authorization.startH|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heure fin</th>
+                <td>{{ authorization.endH ? authorization.endH|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ authorization.createdAt ? authorization.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>description</th>
+                <td>{{ authorization.description}}</td>
+            </tr>
+
+        <tr>
+            <th>statut</th>
+            <td>
+                {% if authorization.status == 'waiting' %}
+                    {% if is_granted('ROLE_ADMIN')and (authorization.userId.id != app.user.id ) %}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning btn-sm dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <i class="fa fa-hourglass-half"></i> En attente
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item"
+                                   href="{{ path('authorization_status', {'id': authorization.id, 'status': 'accepted'}) }}">Accepter</a>
+                                <a class="dropdown-item"
+                                   href="{{ path('authorization_status', {'id': authorization.id, 'status': 'rejected'}) }}">Réfuser</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <span class="badge badge-warning">
+                                           <i class="fa fa-hourglass-half"></i> En attente</span>
+                    {% endif %}
+                {% elseif authorization.status == 'accepted' %}
+                    <span class="badge badge-success"> <i class="fa fa-check"></i> Accepté</span>
+                {% elseif authorization.status == 'rejected' %}
+                    <span class="badge badge-danger"> <i
+                                class="fa fa-minus-circle"></i> Rejeté</span>
+                {% else %}
+                    unknown
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    {% if app.user.function == 'manager' %}
+<a href="{{ path('authorization_index')}}" class="btn btn-default">Retour</a>
+
+
+    {%   else %}
+<a href="{{ path('authorization_mine')}}" class="btn btn-default">Retour</a>
+
+
+    {% endif %}
+
+    {#{% if authorization.userId==app.user %}#}
+    {#<a href="{{ path('authorization_edit', {'id': authorization.id}) }}"><i class="fa fa-edit text-success"></i></a>#}
+
+    {#{{ include('authorization/_delete_form.html.twig') }}#}
+    {#{% endif %}#}
+{% endblock %}

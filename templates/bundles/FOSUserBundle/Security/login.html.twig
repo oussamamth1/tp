@@ -1,0 +1,52 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+{% block body %}
+
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-3">Connexion</h1>
+    </div>
+    
+    {% if error %}
+        <div class="alert alert-danger">
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <span class="initialism form-error-icon badge badge-danger">Error</span>
+                    <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
+
+
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="user">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+        {% endif %}
+
+        <div class="form-group">
+            <input type="text" id="username" name="_username" class="form-control form-control-user" value="{{ last_username }}" required="required" autocomplete="username" placeholder="{{ 'security.login.username'|trans }}"/>
+        </div>
+        <div class="form-group">
+            <input type="password" id="password" name="_password" required="required" class="form-control form-control-user" autocomplete="current-password" placeholder="{{ 'security.login.password'|trans }}"/>
+        </div>
+
+    <input type="submit" id="_submit" name="_submit" class="btn btn-primary btn-user btn-block" value="{{ 'security.login.submit'|trans }}"/> </form>
+    <hr>
+
+    <div class="text-center">
+        <a class="small" href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié?</a> <br/>
+
+        <a class="small" href="{{ path('user_new') }}">Créer un compte ! </a>
+        
+
+
+
+
+{% endblock %}
+{% block javascripts %}{% endblock %}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+    <link href="jquery.countdown.js" rel="stylesheet">
+
+    <link href="{{ asset('theme/css/jquery.countdown.css') }}" rel="stylesheet">
+
+    <style type="text/css">
+
+
+
+        body {
+            min-height: 600px;
+            padding: 200px 0 0;
+            overflow: hidden;
+            font: 14px/1.3 'tahoma', Arial, sans-serif;
+
+        }
+
+        #note {
+            color: #666666;
+            font-size: 12px;
+            margin: 0 auto;
+            padding: 4px;
+            text-align: center;
+            text-shadow: 1px 1px 0;
+        rgba(255, 255, 255, 0.3);
+            width: 400px;
+        }
+
+    </style>    {% endblock %}
+
+</head>
+{% block body %}
+
+<body id="page-top">
+
+
+
+<div id="countdown"></div>
+
+<p id="note"></p>
+
+
+</body>
+{% endblock %}
+
+</html>
+
+{% block javascripts %}
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    {#<script src="jquery.countdown.js"></script>#}
+    <script src="{{ asset('theme/js/jquery.countdown.js') }}"></script>
+
+    <script>
+        $(function () {
+
+            var note = $('#note'),
+                ts = new Date(2019, 6, 26),
+                newYear = true;
+            if ((new Date()) < ts) {
+                ts = (new Date()).getTime() +
+                    10 * 24 * 60 * 60 * 1000;
+                newYear = false;
+
+            }
+
+            $('#countdown').countdown({
+                timestamp: ts,
+                callback: function (days, hours, minutes, seconds) {
+                    var message = "";
+                    message += days + "day" + (days == 1 ? '' : 's') + ",";
+                    message += hours + "hour" + (hours == 1 ? '' : 's') + ",";
+                    message += minutes + "minute" +
+                        (minutes == 1 ? '' : 's') + "and";
+                    message += seconds + "second" +
+                        (seconds == 1 ? '' : 's') + "</br>";
+                    if (newYear) {
+                        message += " left untill the new year !";
+                    } else {
+                        message += " left to 10 days from now !";
+
+                    }
+                    note.html(message);
+
+                }
+            });
+        });</script>
+{% endblock %}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+    {#<meta http-equiv="content-type" content="text/html">#}
+    {#<meta name="author" content="lolkittens">#}
+    {#{% block body %}#}
+
+{#<body >#}
+{#<center>#}
+    {#<div id="timer" style="font-size: 70px;color: red;font-weight: bold"></div>#}
+
+    {#<div id="stop_timer" onclick="clearInterval(timerVar)" >stop time</div>#}
+
+{#</center>#}
+
+
+{#</body>#}
+
+{#</html>#}
+{#{% endblock %}#}
+{#{% block javascripts %}#}
+
+    {#<script type="text/javascript">#}
+        {#var timerVar = setInterval(countTimer, 1000);#}
+        {#var totalSeconds = 0 ;#}
+
+        {#function countTimer() {#}
+
+            {#++totalSeconds;#}
+            {#var hour = Math.floor(totalSeconds/3600);#}
+            {#var minute = Math.floor((totalSeconds- hour*3600)/60);#}
+            {#var second = totalSeconds - (hour*3600 +minute*60);#}
+            {#document.getElementById("timer").innerHTML = hour +":"+minute+":"+seconds;#}
+
+        {#}#}
+
+
+    {#</script>#}
+{#{% endblock %}#}

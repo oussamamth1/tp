@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="KsNOzZz" resname="resetting.reset.submit">
+        <source>resetting.reset.submit</source>
+        <target>__resetting.reset.submit</target>
+      </trans-unit>
+      <trans-unit id="_cY.wHP" resname="resetting.check_email">
+        <source>resetting.check_email</source>
+        <target>__resetting.check_email</target>
+      </trans-unit>
+      <trans-unit id="Redv4tu" resname="resetting.email.subject">
+        <source>resetting.email.subject</source>
+        <target>__resetting.email.subject</target>
+      </trans-unit>
+      <trans-unit id="Lm8o8Qg" resname="resetting.email.message">
+        <source>resetting.email.message</source>
+        <target>__resetting.email.message</target>
+      </trans-unit>
+      <trans-unit id="55aST1i" resname="resetting.request.submit">
+        <source>resetting.request.submit</source>
+        <target>__resetting.request.submit</target>
+      </trans-unit>
+      <trans-unit id="B.ZozIs" resname="registration.confirmed">
+        <source>registration.confirmed</source>
+        <target>__registration.confirmed</target>
+      </trans-unit>
+      <trans-unit id="_wd.d62" resname="registration.back">
+        <source>registration.back</source>
+        <target>__registration.back</target>
+      </trans-unit>
+      <trans-unit id=".ndupSK" resname="registration.check_email">
+        <source>registration.check_email</source>
+        <target>__registration.check_email</target>
+      </trans-unit>
+      <trans-unit id="N.aTMve" resname="registration.email.subject">
+        <source>registration.email.subject</source>
+        <target>__registration.email.subject</target>
+      </trans-unit>
+      <trans-unit id="hN23SFM" resname="registration.email.message">
+        <source>registration.email.message</source>
+        <target>__registration.email.message</target>
+      </trans-unit>
+      <trans-unit id="hmX3IJA" resname="registration.submit">
+        <source>registration.submit</source>
+        <target>__registration.submit</target>
+      </trans-unit>
+      <trans-unit id="q9PlPqt" resname="group.new.submit">
+        <source>group.new.submit</source>
+        <target>__group.new.submit</target>
+      </trans-unit>
+      <trans-unit id="zUyAH.U" resname="group.edit.submit">
+        <source>group.edit.submit</source>
+        <target>__group.edit.submit</target>
+      </trans-unit>
+      <trans-unit id="gbd_oyy" resname="group.show.name">
+        <source>group.show.name</source>
+        <target>__group.show.name</target>
+      </trans-unit>
+      <trans-unit id="ci5Tbzf" resname="profile.edit.submit">
+        <source>profile.edit.submit</source>
+        <target>__profile.edit.submit</target>
+      </trans-unit>
+      <trans-unit id="agwdlwc" resname="change_password.submit">
+        <source>change_password.submit</source>
+        <target>__change_password.submit</target>
+      </trans-unit>
+      <trans-unit id="cMU.0rQ" resname="security.login.username">
+        <source>security.login.username</source>
+        <target>__security.login.username</target>
+      </trans-unit>
+      <trans-unit id="N_kLMwm" resname="security.login.password">
+        <source>security.login.password</source>
+        <target>__security.login.password</target>
+      </trans-unit>
+      <trans-unit id="tuAV77Z" resname="security.login.submit">
+        <source>security.login.submit</source>
+        <target>log in</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Relationship index{% endblock %}
+
+{% block body %}
+    <h1>Relationship index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Request1</th>
+                <th>Request2</th>
+                <th>Accepted1</th>
+                <th>Acepted2</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for relationship in relationships %}
+            <tr>
+                <td>{{ relationship.id }}</td>
+                <td>{{ relationship.request1 }}</td>
+                <td>{{ relationship.request2 }}</td>
+                <td>{{ relationship.accepted1 }}</td>
+                <td>{{ relationship.acepted2 }}</td>
+                <td>
+                    <a href="{{ path('relationship_show', {'id': relationship.id}) }}">show</a>
+                    <a href="{{ path('relationship_edit', {'id': relationship.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('relationship_new') }}">Create new</a>
+{% endblock %}

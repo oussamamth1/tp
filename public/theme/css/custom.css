@@ -1,0 +1,159 @@
+.modal-header {
+    display: block;
+}
+.bg-primary1 {
+    background-color: #25262b;
+}
+.bg-primary2 {
+    background-color:#d1931e;
+}
+    .body {  background-image: url(images/unknown_user.png); }
+
+.bg-login-image2{
+    background:url("../img/intranet.png");
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    position: relative;
+    left: 12px;
+}
+.text-gray-9000{color:#ffffff!important}
+
+.logo {
+    background-color: #e7eaf6;
+    background-image: url("../img/new-continousnet-logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 90% auto;
+    position: relative;
+    margin: 20px 0 60px 0;
+    border-radius: 10px;
+    min-height: 100px;
+}
+
+
+.bg-login-image1{background:url("../img/Large-Triangles (3).svg");background-position:center;background-size:cover}
+.bg-login-image3{background:url("../img/new-favicon.png");background-position:center;background-size:cover}
+.sidebar1 .nav-item .nav-link i{color:#ffffff}
+.sidebar1 .nav-item .nav-link:active,
+.sidebar1 .nav-item .nav-link:focus,
+.sidebar1 .nav-item .nav-link:hover{color:#fff}
+.sidebar1 .nav-item .nav-link:active i,
+.sidebar1 .nav-item .nav-link:focus i,
+.sidebar1 .nav-item .nav-link:hover i{color:#fff}
+.sidebar1 .nav-item .nav-link[data-toggle=collapse]::after{color:#ffffff}
+
+.alt-danger{color:#78261f;background-color:#fadbd8;border-color:#f1c40f}
+.alt-danger hr{border-top-color:#f5b7b1}
+.alt-danger .alert-link{color:#4f1915}
+
+.pad-lft-5{
+    padding-left: 5px;
+}
+
+.link-active{
+    background-color: lightgrey;
+}
+.btn-edit {
+    background-color: #551A8B !important;
+    border-color: #551A8B !important;
+    color: #ffffff !important;
+}
+
+.notif-not-seen{
+    background-color: #d9ddd3;
+}
+
+.border-left-succes{
+    border-left:.25rem solid #56A902!important}
+
+
+.bg-infor {
+    background-color: #56A902!important;
+}
+.text-infor {
+    color: #2d3436!important;
+}
+body {
+    font-family: 'Varela Round', sans-serif;
+}
+.modal-confirm {
+    color: #636363;
+    width: 325px;
+}
+.modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+}
+.modal-confirm .modal-header {
+    border-bottom: none;
+    position: relative;
+}
+.modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -15px;
+}
+.modal-confirm .form-control, .modal-confirm .btn {
+    min-height: 40px;
+    border-radius: 3px;
+}
+.modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+.modal-confirm .modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+}
+.modal-confirm .icon-box {
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -70px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 9;
+    background: #82ce34;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+.modal-confirm .icon-box i {
+    font-size: 58px;
+    position: relative;
+    top: 3px;
+}
+.modal-confirm.modal-dialog {
+    margin-top: 80px;
+}
+.modal-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #82ce34;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border: none;
+}
+.modal-confirm .btn:hover, .modal-confirm .btn:focus {
+    background: #6fb32b;
+    outline: none;
+}
+.trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+}
+
+.aa {
+    color: #000;
+    text-decoration: none;
+    background-color: transparent;
+}

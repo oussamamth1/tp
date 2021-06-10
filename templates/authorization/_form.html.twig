@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+<a href="{{ path('authorization_index')}}" class="btn btn-default">Retour</a>
+
+
+<button class="fa fa-trash-o btn btn-success col-md-2 offset-md-7" id="ajout">{{ button_label|default('Ajouter') }}</button>
+
+
+
+
+{{ form_end(form) }}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edite Autorisation{% endblock %}
+
+{% block body %}
+    <h2 class="h3 mb-2 text-gray-800">Modifier Autorisation</h2>
+
+    {{ include('authorization/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+
+{% endblock %}

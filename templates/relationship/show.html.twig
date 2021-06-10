@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Relationship{% endblock %}
+
+{% block body %}
+    <h1>Relationship</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ relationship.id }}</td>
+            </tr>
+            <tr>
+                <th>Request1</th>
+                <td>{{ relationship.request1 }}</td>
+            </tr>
+            <tr>
+                <th>Request2</th>
+                <td>{{ relationship.request2 }}</td>
+            </tr>
+            <tr>
+                <th>Accepted1</th>
+                <td>{{ relationship.accepted1 }}</td>
+            </tr>
+            <tr>
+                <th>Acepted2</th>
+                <td>{{ relationship.acepted2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('relationship_index') }}">back to list</a>
+
+    <a href="{{ path('relationship_edit', {'id': relationship.id}) }}">edit</a>
+
+    {{ include('relationship/_delete_form.html.twig') }}
+{% endblock %}

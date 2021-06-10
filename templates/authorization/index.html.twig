@@ -1,0 +1,174 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Authorization index
+{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-2 text-gray-800">Liste des demandes d'autorisation
+    </h1>
+    {% if is_granted('ROLE_SUPER_ADMIN')==false %}
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-2">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    <a href="{{ path('authorization_new') }}" class="fa fa-trash-o btn btn-success col-md-2">
+
+                        <i class="fa fa-plus"></i>
+                        Ajouter</a>
+                </h6>
+
+            </div>
+        {% endif %}
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table cellspacing="0" class="table table-bordered" id="table-data" width="100%">
+
+                        <thead>
+                            <tr>
+                                <th>email</th>
+                                <th>Date</th>
+                                <th>Heure debut</th>
+                                <th>Heure fin</th>
+                                <th>statut</th>
+                                <th>actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% if is_granted('ROLE_SUPER_ADMIN')==false %}
+
+                                {% for authorization in authorizations %}
+                                    {% if ((authorization.userId.managerId.id == app.user.id)or(authorization.userId.id == app.user.id)) %}
+
+                                        <tr>
+
+                                            <td>{{ authorization.userId.email }}</td>
+                                            <td>{{ authorization.date ? authorization.date|date('Y/m/d') : '' }}</td>
+                                            <td>{{ authorization.startH ? authorization.startH|date(' H:i:s') : '' }}</td>
+                                            <td>{{ authorization.endH ? authorization.endH|date(' H:i:s') : '' }}</td>
+                                            <td>
+                                                {% if authorization.status == 'waiting' %}
+                                                    {% if is_granted('ROLE_ADMIN') and (authorization.userId.id != app.user.id ) %}
+
+                                                        <div class="btn-group">
+                                                            <button aria-expanded="false" aria-haspopup="true" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown" type="button">
+                                                                <i class="fa fa-hourglass-half"></i>
+                                                                En attente
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" href="{{ path('authorization_status', {'id': authorization.id, 'status': 'accepted'}) }}">Accepter</a>
+                                                                <a class="dropdown-item" href="{{ path('authorization_status', {'id': authorization.id, 'status': 'rejected'}) }}">Réfuser</a>
+                                                            </div>
+                                                        </div>
+                                                    {% else %}
+                                                        <span class="badge badge-warning">
+                                                            <i class="fa fa-hourglass-half"></i>
+                                                            En attente</span>
+                                                    {% endif %}
+                                                {% elseif authorization.status == 'accepted' %}
+                                                    <span class="badge badge-success">
+                                                        <i class="fa fa-check"></i>
+                                                        Accepté</span>
+                                                {% elseif authorization.status == 'rejected' %}
+                                                    <span class="badge badge-danger">
+                                                        <i class="fa fa-minus-circle"></i>
+                                                        Rejeté</span>
+                                                {% else %}
+                                                    unknown
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <a href="{{ path('authorization_show', {'id': authorization.id}) }}">
+                                                    <i class="fa fa-eye text-info"></i>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    {% endif %}
+
+                                {% else %}
+                                    <tr>
+                                        <td colspan="8">Aucun enregistrement trouvé</td>
+                                    </tr>
+
+                                {% endfor %}
+
+                            {% else %}
+                                {% for authorization in authorizations %}
+
+                                    <tr>
+
+                                        <td>{{ authorization.userId.email }}</td>
+                                        <td>{{ authorization.date ? authorization.date|date('Y:m:d') : '' }}</td>
+
+                                        <td>{{ authorization.startH ? authorization.startH|date(' H:i:s') : '' }}</td>
+
+                                        <td>{{ authorization.endH ? authorization.endH|date(' H:i:s') : '' }}</td>
+
+                                        <td>
+                                            {% if authorization.status == 'waiting' %}
+                                                {% if is_granted('ROLE_ADMIN') and (authorization.userId.id != app.user.id ) %}
+
+                                                    <div class="btn-group">
+                                                        <button aria-expanded="false" aria-haspopup="true" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown" type="button">
+                                                            <i class="fa fa-hourglass-half"></i>
+                                                            En attente
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="{{ path('authorization_status', {'id': authorization.id, 'status': 'accepted'}) }}">Accepter</a>
+                                                            <a class="dropdown-item" href="{{ path('authorization_status', {'id': authorization.id, 'status': 'rejected'}) }}">Réfuser</a>
+                                                        </div>
+                                                    </div>
+                                                {% else %}
+                                                    <span class="badge badge-warning">
+                                                        <i class="fa fa-hourglass-half"></i>
+                                                        En attente</span>
+                                                {% endif %}
+                                            {% elseif authorization.status == 'accepted' %}
+                                                <span class="badge badge-success">
+                                                    <i class="fa fa-check"></i>
+                                                    Accepté</span>
+                                            {% elseif authorization.status == 'rejected' %}
+                                                <span class="badge badge-danger">
+                                                    <i class="fa fa-minus-circle"></i>
+                                                    Rejeté</span>
+                                            {% else %}
+                                                unknown
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('authorization_show', {'id': authorization.id}) }}">
+                                                <i class="fa fa-eye text-info"></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="8">Aucun enregistrement trouvé</td>
+                                    </tr>
+
+                                {% endfor %}
+
+                            {% endif %}
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if (alert == 'error') %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                swal("Opération Interdite!", "", "error");
+            });
+        </script>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+{% block body %}
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4" >Modifier mot de passe!</h1>
+    </div>
+<div class="text-gray-900">
+    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" class="btn btn-primary btn-user btn-block"/>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock  %}
